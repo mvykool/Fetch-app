@@ -4,9 +4,7 @@ import LoginView from "./views/LoginView";
 import { useAuth } from "./hooks/useAuth";
 import HomeView from "./views/HomeView";
 
-const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
+const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const { isAuthenticated } = useAuth();
 
   if (!isAuthenticated) {

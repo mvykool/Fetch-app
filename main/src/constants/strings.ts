@@ -22,6 +22,7 @@ export const strings = {
     myFav: "My Favorites ",
     adjustFilter: "Try adjusting your search filters to find more dogs.",
     addFav: "Add some dogs to your favorites!",
+    sort: "Sort By",
     clear: "Clear all",
     reset: "Reset",
     apply: "Apply",
