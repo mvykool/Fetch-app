@@ -64,6 +64,7 @@ const Pagination = ({
   return (
     <nav className="flex justify-center my-6" aria-label="Pagination">
       <ul className="flex items-center space-x-1">
+        {/* Prev page button */}
         <li>
           <button
             onClick={() => handlePageChange(currentPage - 1)}

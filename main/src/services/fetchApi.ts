@@ -14,7 +14,6 @@ const defaultHeaders = {
   "Content-Type": "application/json",
 };
 
-// Reusable fetch function with credentials
 async function fetchWithAuth<T>(
   endpoint: string,
   options: RequestInit = {},

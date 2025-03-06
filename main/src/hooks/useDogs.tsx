@@ -11,7 +11,6 @@ export const useDogs = () => {
     null,
   );
 
-  // Fetch all available dog breeds
   const fetchBreeds = useCallback(async () => {
     setLoading(true);
     setError(null);
@@ -27,7 +26,6 @@ export const useDogs = () => {
     }
   }, []);
 
-  // Search for dogs with filters
   const searchDogs = useCallback(async (params: SearchParams) => {
     setLoading(true);
     setError(null);
