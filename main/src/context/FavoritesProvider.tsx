@@ -18,7 +18,7 @@ export const FavoritesProvider = ({ children }: FavoritesProviderProps) => {
 
   const addFavorite = useCallback((dog: Dog) => {
     setFavorites((prevFavorites) => {
-      //# Don't add if already in favorites
+      // Don't add if already in favorites
       if (prevFavorites.some((fav) => fav.id === dog.id)) {
         return prevFavorites;
       }

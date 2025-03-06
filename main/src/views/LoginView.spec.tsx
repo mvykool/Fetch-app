@@ -27,7 +27,6 @@ describe("LoginView", () => {
       </BrowserRouter>,
     );
 
-    // Check if main elements are rendered
     expect(screen.getByText(strings.header.logo)).toBeInTheDocument();
     expect(screen.getByText(strings.login.subtitle)).toBeInTheDocument();
     expect(screen.getByText(strings.login.text)).toBeInTheDocument();
