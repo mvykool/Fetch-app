@@ -60,19 +60,8 @@ const Header = () => {
             <div className="hidden md:flex items-center space-x-6">
               <div className="relative group">
                 <div className="flex items-center space-x-1 text-white cursor-pointer">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  <span className="bg-white text-blue-600 text-xs rounded-full px-2 py-0.5 font-bold">
+                  <i className="bx bxs-heart text-rose-200 text-2xl"></i>
+                  <span className=" text-Coltext text-base rounded-full px-2 py-0.5 font-bold">
                     {favorites.length}
                   </span>
                   <span>Favorites</span>
@@ -83,27 +72,14 @@ const Header = () => {
               <div className="relative" ref={userMenuRef}>
                 <button
                   onClick={() => setIsUserDropdownOpen(!isUserDropdownOpen)}
-                  className="flex items-center space-x-2 text-white hover:text-blue-100 focus:outline-none transition-colors"
+                  className="flex cursor-pointer items-center space-x-2 text-white hover:text-Coltext focus:outline-none transition-colors"
                 >
                   <div className="w-8 h-8 rounded-full bg-blue-300 flex items-center justify-center text-blue-700 font-semibold">
                     {user?.name.charAt(0).toUpperCase()}
                   </div>
                   <div className="flex items-center">
                     <span className="font-medium">{user?.name}</span>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className={`h-5 w-5 ml-1 transition-transform ${
-                        isUserDropdownOpen ? "transform rotate-180" : ""
-                      }`}
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
+                    <i className="bx bx-chevron-down text-2xl"></i>
                   </div>
                 </button>
 
@@ -118,7 +94,7 @@ const Header = () => {
                     </div>
                     <button
                       onClick={handleLogout}
-                      className="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                      className="w-full cursor-pointer text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                     >
                       Sign out
                     </button>

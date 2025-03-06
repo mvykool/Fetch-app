@@ -17,11 +17,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           {children}
         </div>
       </main>
-      <footer className="bg-white py-4 shadow-inner">
+      <footer className="bg-light border border-t-Coltext py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-center text-gray-500 text-sm">
-            &copy; {new Date().getFullYear()} Fetch Dog Adoption - Find Your
-            Forever Friend
+            &copy; {new Date().getFullYear()} Oh my dog! - Find Your Puppy
           </p>
         </div>
       </footer>
