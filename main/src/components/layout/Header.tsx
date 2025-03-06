@@ -42,16 +42,16 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-primary fixed w-full z-50">
+    <header className="bg-primary fixed w-full z-50 border-black border-b-[1px]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center">
             <div className="flex-shrink-0">
               <a href="/" className="flex items-center gap-2">
                 <img src="/logo.png" alt="logo" className="size-8" />
-                <h1 className="text-2xl font-bold text-white">
+                <span className="text-2xl font-bold text-white text-border">
                   {strings.header.logo}
-                </h1>
+                </span>
               </a>
             </div>
           </div>
@@ -60,7 +60,7 @@ const Header = () => {
             <div className="hidden md:flex items-center space-x-6">
               <div className="relative group">
                 <div className="flex items-center space-x-1 text-white cursor-pointer">
-                  <i className="bx bxs-heart text-rose-400 text-2xl"></i>
+                  <i className="bx bxs-heart text-rose-400 text-2xl text-border"></i>
                   <span className=" text-Coltext text-base rounded-full px-2 py-0.5 font-bold">
                     {favorites.length}
                   </span>
@@ -73,12 +73,14 @@ const Header = () => {
                   onClick={() => setIsUserDropdownOpen(!isUserDropdownOpen)}
                   className="flex cursor-pointer items-center space-x-2 text-white hover:text-Coltext focus:outline-none transition-colors"
                 >
-                  <div className="w-8 h-8 rounded-full bg-blue-300 flex items-center justify-center text-blue-700 font-semibold">
+                  <div className="w-8 h-8 rounded-full bg-blue-300 flex items-center border-black border-[1px] justify-center text-blue-700 font-semibold">
                     {user?.name.charAt(0).toUpperCase()}
                   </div>
                   <div className="flex items-center">
-                    <span className="font-medium">{user?.name}</span>
-                    <i className="bx bx-chevron-down text-2xl"></i>
+                    <span className="font-medium tracking-wide text-border">
+                      {user?.name}
+                    </span>
+                    <i className="bx bx-chevron-down text-2xl text-border"></i>
                   </div>
                 </button>
 
@@ -95,7 +97,7 @@ const Header = () => {
                       onClick={handleLogout}
                       className="w-full cursor-pointer text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                     >
-                      Sign out
+                      {strings.header.signOut}
                     </button>
                   </div>
                 )}
@@ -113,37 +115,9 @@ const Header = () => {
                 aria-label="Toggle menu"
               >
                 {isMenuOpen ? (
-                  <svg
-                    className="h-6 w-6"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
+                  <i className="bx bx-x text-3xl"></i>
                 ) : (
-                  <svg
-                    className="h-6 w-6"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    aria-hidden="true"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M4 6h16M4 12h16M4 18h16"
-                    />
-                  </svg>
+                  <i className="bx bx-menu text-3xl"></i>
                 )}
               </button>
             </div>
@@ -152,39 +126,28 @@ const Header = () => {
 
         {/* Mobile Menu */}
         {isAuthenticated && isMenuOpen && (
-          <div className="md:hidden pt-2 pb-4 border-t border-blue-400">
+          <div className="md:hidden pt-2 pb-4 border-t border-black">
             <div className="space-y-1">
               {/* User Info */}
-              <div className="px-4 py-3 bg-blue-600 rounded-md flex items-center space-x-3">
-                <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-blue-700 font-semibold text-xl">
+              <div className="px-4 py-3 bg-secondary rounded-md flex items-center space-x-3">
+                <div className="w-10 h-10 rounded-full bg-blue-200 border-black border flex items-center justify-center text-blue-700 font-semibold text-xl">
                   {user?.name.charAt(0).toUpperCase()}
                 </div>
                 <div>
-                  <p className="text-white font-medium">{user?.name}</p>
-                  <p className="text-blue-200 text-sm truncate">
-                    {user?.email}
+                  <p className="text-white font-medium text-border tracking-wide">
+                    {user?.name}
                   </p>
+                  <p className="text-Coltext text-sm truncate">{user?.email}</p>
                 </div>
               </div>
 
               {/* Favorites */}
               <div className="px-4 py-3 flex justify-between items-center text-white">
                 <div className="flex items-center space-x-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  <span>Favorites</span>
+                  <i className="bx bxs-heart text-rose-400 text-2xl text-border"></i>
+                  <span>{strings.header.favorites}</span>
                 </div>
-                <div className="bg-white text-blue-600 text-xs rounded-full px-2 py-0.5 font-bold">
+                <div className=" text-Coltext text-base rounded-full px-2 py-0.5 font-bold">
                   {favorites.length}
                 </div>
               </div>
@@ -192,21 +155,10 @@ const Header = () => {
               {/* Sign Out */}
               <button
                 onClick={handleLogout}
-                className="w-full flex items-center space-x-2 px-4 py-3 text-white hover:bg-blue-600 rounded-md"
+                className="w-full flex items-center space-x-2 px-4 py-3 text-white  rounded-md"
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M3 3a1 1 0 00-1 1v12a1 1 0 001 1h12a1 1 0 001-1V7.414l-5-5H3zm7 5a1 1 0 10-2 0v4.586l-1.293-1.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 12.586V8z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <span>Sign out</span>
+                <i className="bx bx-log-out text-2xl"></i>
+                <span>{strings.header.signOut}</span>
               </button>
             </div>
           </div>

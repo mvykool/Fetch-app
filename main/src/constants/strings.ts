@@ -7,6 +7,8 @@ export const strings = {
   },
   header: {
     logo: "Oh my dog!",
+    signOut: "Sign out",
+    favorites: "Favorites",
   },
   home: {
     heading: "Find Your Furry Best Friend!",
@@ -21,6 +23,10 @@ export const strings = {
     adjustFilter: "Try adjusting your search filters to find more dogs.",
     addFav: "Add some dogs to your favorites!",
     clear: "Clear all",
+    reset: "Reset",
+    apply: "Apply",
+    minAge: "Min Age (years)",
+    maxAge: "Max Age (years)",
   },
   match: {
     foundMatch: "Your perfect match!",

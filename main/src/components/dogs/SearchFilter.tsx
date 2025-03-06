@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, ChangeEvent } from "react";
 import { SortField, SortOrder } from "../../types";
+import { strings } from "../../constants/strings";
 
 interface SearchFiltersProps {
   breeds: string[];
@@ -71,19 +72,19 @@ const SearchFilters = ({
     };
 
     document.addEventListener("mousedown", handleClickOutside);
-    return () => {
+    return (): void => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isBreedDropdownOpen]);
 
   return (
-    <div className="bg-white rounded-lg shadow-sm p-4 mb-6">
+    <div className="bg-white rounded-lg border-black border shadow-sm p-4 mb-6">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-lg font-semibold">Search Filters</h2>
         <button
           type="button"
           onClick={() => setIsFilterExpanded(!isFilterExpanded)}
-          className="text-blue-600 hover:text-blue-800 md:hidden"
+          className="text-Coltext hover:text-black md:hidden"
         >
           {isFilterExpanded ? "Hide Filters" : "Show Filters"}
         </button>
@@ -101,7 +102,7 @@ const SearchFilters = ({
             <button
               type="button"
               onClick={() => setIsBreedDropdownOpen(!isBreedDropdownOpen)}
-              className="w-full flex justify-between items-center px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full flex justify-between items-center px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-secondary"
               disabled={loading}
             >
               <span className="truncate">
@@ -111,26 +112,11 @@ const SearchFilters = ({
                     } selected`
                   : "Select breeds"}
               </span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className={`h-5 w-5 transition-transform ${
-                  isBreedDropdownOpen ? "transform rotate-180" : ""
-                }`}
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M19 9l-7 7-7-7"
-                />
-              </svg>
+              <i className="bx bx-chevron-down text-2xl"></i>
             </button>
 
             {isBreedDropdownOpen && (
-              <div className="absolute z-10 mt-1 w-full bg-white shadow-sm rounded-md border border-gray-200 max-h-60 overflow-y-auto">
+              <div className="absolute z-10 mt-1 w-full bg-white shadow-sm rounded-md border border-black max-h-60 overflow-y-auto">
                 <div className="p-2 border-b sticky top-0 bg-white">
                   <div className="flex justify-between items-center mb-2">
                     <span className="text-sm font-medium text-gray-700">
@@ -138,7 +124,7 @@ const SearchFilters = ({
                     </span>
                     <button
                       onClick={handleClearBreeds}
-                      className="text-sm text-blue-600 hover:text-blue-800"
+                      className="text-sm text-primaryHover hover:text-Coltext cursor-pointer"
                       type="button"
                     >
                       Clear all
@@ -147,9 +133,11 @@ const SearchFilters = ({
                   <input
                     type="text"
                     value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
+                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                      setSearchTerm(e.target.value)
+                    }
                     placeholder="Search breeds..."
-                    className="w-full px-3 py-1 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-1 focus:ring-blue-500"
+                    className="w-full px-3 py-1 text-sm border border-black rounded-md focus:outline-none focus:ring-1 focus:ring-secondary"
                   />
                 </div>
                 <div className="p-2">
@@ -160,14 +148,14 @@ const SearchFilters = ({
                         : "No breeds available"}
                     </div>
                   ) : (
-                    filteredBreeds.map((breed) => (
+                    filteredBreeds.map((breed: string) => (
                       <div key={breed} className="py-1">
                         <label className="flex items-center space-x-2 cursor-pointer">
                           <input
                             type="checkbox"
                             checked={selectedBreeds.includes(breed)}
                             onChange={() => handleBreedToggle(breed)}
-                            className="rounded text-blue-600 focus:ring-blue-500"
+                            className="rounded text-primaryHover focus:ring-Coltext"
                           />
                           <span className="text-sm text-gray-700 truncate">
                             {breed}
@@ -186,23 +174,25 @@ const SearchFilters = ({
         <div className="grid grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Min Age (years)
+              {strings.search.minAge}
             </label>
             <input
               type="number"
               value={ageMin}
-              onChange={(e) => setAgeMin(e.target.value)}
+              onChange={(e: ChangeEvent<HTMLInputElement>): void =>
+                setAgeMin(e.target.value)
+              }
               min="0"
               max="20"
               placeholder="Min age"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3  placeholder-gray-500 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-secondary"
               disabled={loading}
             />
           </div>
 
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
-              Max Age (years)
+              {strings.search.maxAge}
             </label>
             <input
               type="number"
@@ -211,7 +201,7 @@ const SearchFilters = ({
               min="0"
               max="20"
               placeholder="Max age"
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 placeholder-gray-500 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-secondary"
               disabled={loading}
             />
           </div>
@@ -225,7 +215,7 @@ const SearchFilters = ({
           <select
             value={`${sortField}:${sortOrder}`}
             onChange={handleSortChange}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full px-3 py-2 border border-black rounded-md focus:outline-none focus:ring-2 focus:ring-secondary"
             disabled={loading}
           >
             <option value="breed:asc">Breed (A-Z)</option>
@@ -247,26 +237,15 @@ const SearchFilters = ({
               {selectedBreeds.map((breed) => (
                 <div
                   key={breed}
-                  className="bg-blue-100 text-blue-800 text-xs rounded-full px-3 py-1 flex items-center"
+                  className="bg-light border border-black text-Coltext text-xs rounded-full px-3 py-1 flex items-center"
                 >
                   <span className="truncate max-w-[150px]">{breed}</span>
                   <button
                     onClick={() => handleBreedToggle(breed)}
-                    className="ml-1 text-blue-600 hover:text-blue-800"
+                    className="ml-1 text-Coltext flex items-center"
                     aria-label={`Remove ${breed}`}
                   >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-4 w-4"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
+                    <i className="bx bx-x text-lg"></i>
                   </button>
                 </div>
               ))}
@@ -278,17 +257,17 @@ const SearchFilters = ({
         <div className="flex justify-end mt-4 md:hidden">
           <button
             onClick={handleClearBreeds}
-            className="px-4 py-1 text-gray-700 bg-gray-100 rounded-md mr-2 hover:bg-gray-200"
+            className="px-4 py-1 text-gray-700 bg-gray-100 rounded-md border border-black mr-2 hover:bg-gray-200"
             type="button"
           >
-            Reset
+            {strings.search.reset}
           </button>
           <button
             onClick={() => setIsFilterExpanded(false)}
-            className="px-4 py-1 text-white bg-blue-600 rounded-md hover:bg-blue-700"
+            className="px-4 py-1 text-white bg-primary border-black border rounded-md"
             type="button"
           >
-            Apply
+            {strings.search.apply}
           </button>
         </div>
       </div>

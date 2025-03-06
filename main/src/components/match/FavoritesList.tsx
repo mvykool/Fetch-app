@@ -16,7 +16,7 @@ const FavoritesList = ({ onGenerateMatch, loading }: FavoritesListProps) => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-sm p-4 mb-6">
+    <div className="bg-white rounded-lg shadow-sm p-4 mb-6 border-black border-[1px]">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-lg font-semibold">
           {" "}
@@ -73,7 +73,7 @@ const FavoritesList = ({ onGenerateMatch, loading }: FavoritesListProps) => {
           <button
             onClick={onGenerateMatch}
             disabled={favorites.length === 0 || loading}
-            className="w-full py-2 px-4 bg-secondary cursor-pointer text-white rounded-md hover:bg-Coltext focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors disabled:opacity-50"
+            className="w-full py-2 px-4 bg-secondary cursor-pointer text-white rounded-md hover:bg-Coltext focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 transition-colors disabled:opacity-50"
           >
             {loading
               ? "Finding your match..."

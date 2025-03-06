@@ -29,7 +29,7 @@ const HomeView = () => {
       </div>
 
       <button
-        className="flex items-center gap-2 px-3 py-2 text-white mx-auto md:mx-24 justify-between mt-16 md:mt-0 bg-primary max-w-28 hover:cursor-pointer hover:bg-primaryHover rounded-md transition-all hover:scale-105"
+        className="flex items-center gap-2 border-black border-[1px] px-3 py-2 text-white mx-auto md:mx-24 justify-between mt-16 md:mt-0 bg-primary max-w-28 hover:cursor-pointer hover:bg-primaryHover rounded-md transition-all hover:scale-105"
         type="button"
         onClick={goToSearch}
       >
