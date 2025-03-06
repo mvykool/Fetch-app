@@ -12,7 +12,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <div className="min-h-screen text-Coltext flex flex-col bg-light">
       {isAuthenticated && <Header />}
-      <main className="flex-grow">
+      <main className="flex-grow mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           {children}
         </div>

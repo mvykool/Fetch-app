@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { SortField, SortOrder } from "../../types";
 
 interface SearchFiltersProps {
@@ -13,11 +13,11 @@ interface SearchFiltersProps {
   loading: boolean;
 }
 
-const SearchFilters: React.FC<SearchFiltersProps> = ({
+const SearchFilters = ({
   breeds,
   onFilterChange,
   loading,
-}) => {
+}: SearchFiltersProps) => {
   const [selectedBreeds, setSelectedBreeds] = useState<string[]>([]);
   const [ageMin, setAgeMin] = useState<string>("");
   const [ageMax, setAgeMax] = useState<string>("");
@@ -38,19 +38,16 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
     });
   }, [selectedBreeds, ageMin, ageMax, sortField, sortOrder, onFilterChange]);
 
-  // Handle breed selection/deselection
   const handleBreedToggle = (breed: string) => {
     setSelectedBreeds((prev) =>
       prev.includes(breed) ? prev.filter((b) => b !== breed) : [...prev, breed],
     );
   };
 
-  // Clear all selected breeds
   const handleClearBreeds = () => {
     setSelectedBreeds([]);
   };
 
-  // Handle sort change
   const handleSortChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const [field, order] = e.target.value.split(":") as [SortField, SortOrder];
     setSortField(field);
@@ -80,7 +77,7 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
   }, [isBreedDropdownOpen]);
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-4 mb-6">
+    <div className="bg-white rounded-lg shadow-sm p-4 mb-6">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-lg font-semibold">Search Filters</h2>
         <button
@@ -133,7 +130,7 @@ const SearchFilters: React.FC<SearchFiltersProps> = ({
             </button>
 
             {isBreedDropdownOpen && (
-              <div className="absolute z-10 mt-1 w-full bg-white shadow-lg rounded-md border border-gray-200 max-h-60 overflow-y-auto">
+              <div className="absolute z-10 mt-1 w-full bg-white shadow-sm rounded-md border border-gray-200 max-h-60 overflow-y-auto">
                 <div className="p-2 border-b sticky top-0 bg-white">
                   <div className="flex justify-between items-center mb-2">
                     <span className="text-sm font-medium text-gray-700">

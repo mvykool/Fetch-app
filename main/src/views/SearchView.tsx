@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { Dog, SearchParams, SortField, SortOrder } from "../types";
 import { useDogs } from "../hooks/useDogs";
@@ -10,10 +10,11 @@ import DogGrid from "../components/dogs/DogGrid";
 import Pagination from "../components/ui/Pagination";
 import FavoritesList from "../components/match/FavoritesList";
 import MatchResult from "../components/match/MatchResult";
+import { strings } from "../constants/strings";
 
 const DOGS_PER_PAGE = 24;
 
-const SearchPage: React.FC = () => {
+const SearchView = () => {
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
   const {
@@ -36,14 +37,12 @@ const SearchPage: React.FC = () => {
   const [isGeneratingMatch, setIsGeneratingMatch] = useState(false);
   const [matchedDog, setMatchedDog] = useState<Dog | null>(null);
 
-  // Redirect to login if not authenticated
   useEffect(() => {
     if (!isAuthenticated) {
-      navigate("/");
+      navigate("/login");
     }
   }, [isAuthenticated, navigate]);
 
-  // Search for dogs with current filters
   const fetchDogs = useCallback(
     async (page: number) => {
       const params: SearchParams = {
@@ -66,11 +65,10 @@ const SearchPage: React.FC = () => {
 
   // Initial fetch and when filters change
   useEffect(() => {
-    setCurrentPage(1); // Reset to first page when filters change
+    setCurrentPage(1);
     fetchDogs(1);
   }, [selectedBreeds, ageMin, ageMax, sortField, sortOrder, fetchDogs]);
 
-  // Handle filter changes
   const handleFilterChange = useCallback(
     (filters: {
       selectedBreeds: string[];
@@ -88,18 +86,15 @@ const SearchPage: React.FC = () => {
     [],
   );
 
-  // Handle page change
   const handlePageChange = useCallback(
     (page: number) => {
       setCurrentPage(page);
       fetchDogs(page);
-      // Scroll to top when changing pages
       window.scrollTo({ top: 0, behavior: "smooth" });
     },
     [fetchDogs],
   );
 
-  // Generate a match from favorites
   const handleGenerateMatch = useCallback(async () => {
     if (favorites.length === 0) return;
 
@@ -115,41 +110,30 @@ const SearchPage: React.FC = () => {
     }
   }, [favorites, generateMatch]);
 
-  // Reset match
   const handleResetMatch = () => {
     setMatchedDog(null);
   };
 
-  // Calculate total pages
   const totalPages = searchResults?.total
     ? Math.ceil(searchResults.total / DOGS_PER_PAGE)
     : 1;
 
-  // Check if there are next and previous pages
   const hasNextPage = searchResults?.next !== undefined;
   const hasPrevPage = searchResults?.prev !== undefined;
 
   if (!isAuthenticated) {
-    return null; // Will redirect to login
+    return null;
   }
 
   return (
     <div className="space-y-6">
       {/* Search title */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-        <h1 className="text-2xl font-bold text-gray-900">
-          Find Your Perfect Dog
-        </h1>
-        <p className="text-gray-600">
-          {searchResults?.total
-            ? `Found ${searchResults.total} ${
-                searchResults.total === 1 ? "dog" : "dogs"
-              }`
-            : "Loading dogs..."}
-        </p>
+        <h2 className="text-2xl font-bold text-gray-900">
+          {strings.search.searchTitle}
+        </h2>
       </div>
 
-      {/* Error message */}
       {error && (
         <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
           <p>{error}</p>
@@ -163,24 +147,8 @@ const SearchPage: React.FC = () => {
       )}
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Left sidebar for filters and favorites */}
-        <div className="lg:col-span-1 space-y-6">
-          <SearchFilters
-            breeds={breeds}
-            onFilterChange={handleFilterChange}
-            loading={loading}
-          />
-          <FavoritesList
-            onGenerateMatch={handleGenerateMatch}
-            loading={isGeneratingMatch}
-          />
-        </div>
-
-        {/* Main content area - dog grid */}
         <div className="lg:col-span-2">
           <DogGrid dogs={dogs} loading={loading} />
-
-          {/* Pagination */}
           {searchResults && searchResults.total > DOGS_PER_PAGE && (
             <Pagination
               currentPage={currentPage}
@@ -192,8 +160,19 @@ const SearchPage: React.FC = () => {
             />
           )}
         </div>
-      </div>
 
+        <div className="lg:col-span-1 space-y-6 lg:sticky lg:top-6 lg:self-start">
+          <SearchFilters
+            breeds={breeds}
+            onFilterChange={handleFilterChange}
+            loading={loading}
+          />
+          <FavoritesList
+            onGenerateMatch={handleGenerateMatch}
+            loading={isGeneratingMatch}
+          />
+        </div>
+      </div>
       {/* Match result modal */}
       {matchedDog && (
         <MatchResult matchedDog={matchedDog} onReset={handleResetMatch} />
@@ -202,4 +181,4 @@ const SearchPage: React.FC = () => {
   );
 };
 
-export default SearchPage;
+export default SearchView;

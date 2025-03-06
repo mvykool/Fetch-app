@@ -30,8 +30,8 @@ const Header = () => {
 
   const handleLogout = async () => {
     try {
-      await logout();
       navigate("/login");
+      await logout();
     } catch (error) {
       console.error("Logout failed:", error);
     }
@@ -42,7 +42,7 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-primary">
+    <header className="bg-primary fixed w-full z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center">
@@ -60,11 +60,10 @@ const Header = () => {
             <div className="hidden md:flex items-center space-x-6">
               <div className="relative group">
                 <div className="flex items-center space-x-1 text-white cursor-pointer">
-                  <i className="bx bxs-heart text-rose-200 text-2xl"></i>
+                  <i className="bx bxs-heart text-rose-400 text-2xl"></i>
                   <span className=" text-Coltext text-base rounded-full px-2 py-0.5 font-bold">
                     {favorites.length}
                   </span>
-                  <span>Favorites</span>
                 </div>
               </div>
 
