@@ -1,4 +1,10 @@
 export const strings = {
+  login: {
+    subtitle: "Find your perfect furry companion",
+    name: "Enter your name",
+    email: "Enter your email",
+    text: "Find your new best friend with our dog adoption platform!",
+  },
   header: {
     logo: "Oh my dog!",
   },

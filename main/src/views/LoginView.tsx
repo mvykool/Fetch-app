@@ -1,8 +1,7 @@
-// src/pages/LoginPage.tsx
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
+import { strings } from "../constants/strings";
 
 const LoginView: React.FC = () => {
   const [name, setName] = useState("");
@@ -26,7 +25,7 @@ const LoginView: React.FC = () => {
 
     try {
       await login(name, email);
-      navigate("/search");
+      navigate("/");
     } catch (err) {
       setError("Login failed. Please check your information and try again.");
       console.error(err);
@@ -36,13 +35,13 @@ const LoginView: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 px-4">
+    <div className="flex flex-col items-center justify-center min-h-screen px-4">
       <div className="w-full max-w-md bg-white rounded-lg shadow-md p-8">
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-blue-600">Fetch Dogs</h1>
-          <p className="text-gray-600 mt-2">
-            Find your perfect furry companion
-          </p>
+          <h1 className="text-3xl font-bold text-Coltext">
+            {strings.header.logo}
+          </h1>
+          <p className="text-gray-600 mt-2">{strings.login.subtitle}</p>
         </div>
 
         {error && (
@@ -64,8 +63,8 @@ const LoginView: React.FC = () => {
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Enter your name"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary"
+              placeholder={strings.login.name}
               required
             />
           </div>
@@ -82,8 +81,8 @@ const LoginView: React.FC = () => {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="Enter your email"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-secondary"
+              placeholder={strings.login.email}
               required
             />
           </div>
@@ -91,14 +90,14 @@ const LoginView: React.FC = () => {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors disabled:opacity-50"
+            className="w-full bg-rose-400 text-white py-2 px-4 rounded-md hover:bg-rose-500 focus:outline-none focus:ring-2 focus:ring-secondary cursor-pointer focus:ring-offset-2 transition-colors disabled:opacity-50"
           >
             {loading ? "Logging in..." : "Login"}
           </button>
         </form>
 
         <div className="mt-6 text-center text-sm text-gray-500">
-          <p>Find your new best friend with our dog adoption platform!</p>
+          <p>{strings.login.text}</p>
         </div>
       </div>
     </div>
