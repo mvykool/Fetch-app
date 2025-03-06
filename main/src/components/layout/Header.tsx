@@ -42,7 +42,7 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-primary fixed w-full z-50 border-black border-b-[1px]">
+    <header className="bg-primary fixed w-full z-50 border-black border-b">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center">
@@ -71,9 +71,9 @@ const Header = () => {
               <div className="relative" ref={userMenuRef}>
                 <button
                   onClick={() => setIsUserDropdownOpen(!isUserDropdownOpen)}
-                  className="flex cursor-pointer items-center space-x-2 text-white hover:text-Coltext focus:outline-none transition-colors"
+                  className="flex cursor-pointer items-center space-x-2 text-white  focus:outline-none transition-colors"
                 >
-                  <div className="w-8 h-8 rounded-full bg-blue-300 flex items-center border-black border-[1px] justify-center text-blue-700 font-semibold">
+                  <div className="w-8 h-8 rounded-full bg-blue-300 flex items-center border-black border justify-center text-blue-700 font-semibold">
                     {user?.name.charAt(0).toUpperCase()}
                   </div>
                   <div className="flex items-center">

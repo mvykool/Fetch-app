@@ -19,7 +19,7 @@ const DogCard = ({ dog }: DogCardProps) => {
   };
 
   return (
-    <div className="bg-white rounded-lg  border-black border-[1px] overflow-hidden transition-shadow">
+    <div className="bg-white rounded-lg  border-black border overflow-hidden transition-shadow">
       <div className="relative h-48 bg-gray-200">
         <img
           src={dog.img}
@@ -32,7 +32,7 @@ const DogCard = ({ dog }: DogCardProps) => {
         />
         <button
           onClick={handleFavoriteToggle}
-          className="absolute cursor-pointer top-2 right-2 bg-white p-1.5 flex justify-center items-center rounded-full border-black border-[1px] hover:bg-gray-100"
+          className="absolute cursor-pointer top-2 right-2 bg-white p-1.5 flex justify-center items-center rounded-full border-black border hover:bg-gray-100"
           aria-label={favorite ? "Remove from favorites" : "Add to favorites"}
         >
           {favorite ? (
