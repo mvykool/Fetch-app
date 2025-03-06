@@ -85,15 +85,16 @@ A React application that helps users find and match with dogs for adoption using
 ### Prerequisites
 
 
-- Node.js (Latest LTS version recommended)
+- Node.js
 - npm or yarn
 
 ### Installation
 
 1. Clone the repository:
 ```bash
-git clone [your-repository-url]
-cd [repository-name]
+git clone https://github.com/mvykool/Fetch-app.git
+cd Fetch-app
+cd main
 ```
 
 2. Install dependencies:
@@ -114,6 +115,7 @@ The application will be available at `http://localhost:5173`
 - `npm run build` - Build for production
 - `npm run preview` - Preview production build
 - `npm run test` - Run tests
+- `npm run test:coverage` - Run tests with coverage report
 - `npm run lint` - Run ESLint
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -124,10 +126,10 @@ The application will be available at `http://localhost:5173`
 ```
 src/
 ├── components/    # UI components
+├── constants/     # Constants
 ├── context/       # React Context providers
 ├── hooks/         # Custom React hooks
 ├── services/      # API service functions
-├── constants/     # Constants
 ├── views/         # Page components
 ├── types/         # TypeScript type definitions
 └── Router.tsx     # Application routing
