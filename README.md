@@ -36,9 +36,10 @@
       </ul>
     </li>
     <li><a href="#structure">Structure</a></li>
-    <li><a href="#api">Api integration</a></li>
+    <li><a href="#api-integration">Api integration</a></li>
+    <li><a href="#features">Features</a></li>
     <li><a href="#testing">Testing</a></li>
-    <li><a href="#production">Build for production</a></li>
+    <li><a href="#building-for-production">Build for production</a></li>
   </ol>
 </details>
 
@@ -113,7 +114,6 @@ The application will be available at `http://localhost:5173`
 - `npm run build` - Build for production
 - `npm run preview` - Preview production build
 - `npm run test` - Run tests
-- `npm run test:coverage` - Run tests with coverage report
 - `npm run lint` - Run ESLint
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -143,7 +143,7 @@ The application integrates with the Fetch API (https://frontend-take-home-servic
 - Locations: `/locations/search`
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## Features in Detail
+## Features
 
 ### Search Functionality
 - Users can search for dogs with various filters:
