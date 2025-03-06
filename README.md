@@ -35,8 +35,10 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#structure">Usage</a></li>
-    <li><a href="#api">Usage</a></li>
+    <li><a href="#structure">Structure</a></li>
+    <li><a href="#api">Api integration</a></li>
+    <li><a href="#testing">Testing</a></li>
+    <li><a href="#production">Build for production</a></li>
   </ol>
 </details>
 
@@ -121,15 +123,16 @@ The application will be available at `http://localhost:5173`
 
 ```
 src/
-├── components/     # Reusable UI components
+├── components/    # UI components
 ├── context/       # React Context providers
 ├── hooks/         # Custom React hooks
 ├── services/      # API service functions
-├── constants/     # Constants and configuration
+├── constants/     # Constants
 ├── views/         # Page components
 ├── types/         # TypeScript type definitions
 └── Router.tsx     # Application routing
 ```
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## API Integration
 
@@ -138,13 +141,7 @@ The application integrates with the Fetch API (https://frontend-take-home-servic
 - Authentication: `/auth/login`, `/auth/logout`
 - Dogs: `/dogs/search`, `/dogs/breeds`, `/dogs/match`
 - Locations: `/locations/search`
-
-## Authentication Flow
-
-1. Users enter their name and email on the login screen
-2. The application authenticates with the Fetch API
-3. An HTTP-only cookie is used for maintaining the session
-4. Protected routes ensure authenticated access
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Features in Detail
 
@@ -165,6 +162,8 @@ The application integrates with the Fetch API (https://frontend-take-home-servic
 - ZIP code based location search
 - Detailed location information display
 - Geographic boundary box search support
+  
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Testing
 
@@ -183,3 +182,5 @@ npm run build
 ```
 
 The build artifacts will be stored in the `dist/` directory.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
