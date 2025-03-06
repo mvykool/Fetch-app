@@ -48,6 +48,8 @@
 <img align="center" src="main/public/search.png" alt="setup" width="820" height="400"/>
 
 A React application that helps users find and match with dogs for adoption. The application allows the user to search, filter, and mark dogs as favorites to find the perfect match.
+<br />
+<br />
 Link to deployed website: https://fetch-app-eta.vercel.app/
 
 ## Features
