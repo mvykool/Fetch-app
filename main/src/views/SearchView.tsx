@@ -34,6 +34,7 @@ const SearchView = () => {
   const [ageMax, setAgeMax] = useState<number | undefined>(undefined);
   const [sortField, setSortField] = useState<SortField>("breed");
   const [sortOrder, setSortOrder] = useState<SortOrder>("asc");
+  const [zipCodes, setZipCodes] = useState<string[]>([]);
   const [isGeneratingMatch, setIsGeneratingMatch] = useState(false);
   const [matchedDog, setMatchedDog] = useState<Dog | null>(null);
 
@@ -47,6 +48,7 @@ const SearchView = () => {
     async (page: number) => {
       const params: SearchParams = {
         breeds: selectedBreeds.length > 0 ? selectedBreeds : undefined,
+        zipCodes: zipCodes.length > 0 ? zipCodes : undefined,
         ageMin,
         ageMax,
         size: DOGS_PER_PAGE,
@@ -60,14 +62,14 @@ const SearchView = () => {
 
       await searchDogs(params);
     },
-    [searchDogs, selectedBreeds, ageMin, ageMax, sortField, sortOrder],
+    [searchDogs, selectedBreeds, zipCodes, ageMin, ageMax, sortField, sortOrder],
   );
 
   // Initial fetch and when filters change
   useEffect(() => {
     setCurrentPage(1);
     fetchDogs(1);
-  }, [selectedBreeds, ageMin, ageMax, sortField, sortOrder, fetchDogs]);
+  }, [selectedBreeds, zipCodes, ageMin, ageMax, sortField, sortOrder, fetchDogs]);
 
   const handleFilterChange = useCallback(
     (filters: {
@@ -76,12 +78,14 @@ const SearchView = () => {
       ageMax?: number;
       sortField: SortField;
       sortOrder: SortOrder;
+      zipCodes: string[];
     }) => {
       setSelectedBreeds(filters.selectedBreeds);
       setAgeMin(filters.ageMin);
       setAgeMax(filters.ageMax);
       setSortField(filters.sortField);
       setSortOrder(filters.sortOrder);
+      setZipCodes(filters.zipCodes);
     },
     [],
   );

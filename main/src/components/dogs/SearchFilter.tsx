@@ -5,6 +5,7 @@ import AgeRangeFilter from "../ui/AgeRangeFilter";
 import SortOptions from "../ui/SortOptions";
 import SelectedBreedTags from "../ui/SelectedBreedTag";
 import MobileFilterButtons from "../ui/MobileFilterBtns";
+import ZipCodeFilter from "../ui/ZipCodeFilter";
 
 interface SearchFiltersProps {
   breeds: string[];
@@ -14,6 +15,7 @@ interface SearchFiltersProps {
     ageMax?: number;
     sortField: SortField;
     sortOrder: SortOrder;
+    zipCodes: string[];
   }) => void;
   loading: boolean;
 }
@@ -28,6 +30,7 @@ const SearchFilters = ({
   const [ageMax, setAgeMax] = useState<string>("");
   const [sortField, setSortField] = useState<SortField>("breed");
   const [sortOrder, setSortOrder] = useState<SortOrder>("asc");
+  const [zipCodes, setZipCodes] = useState<string[]>([]);
   const [isFilterExpanded, setIsFilterExpanded] = useState(false);
 
   useEffect(() => {
@@ -37,11 +40,20 @@ const SearchFilters = ({
       ageMax: ageMax ? parseInt(ageMax) : undefined,
       sortField,
       sortOrder,
+      zipCodes,
     });
-  }, [selectedBreeds, ageMin, ageMax, sortField, sortOrder, onFilterChange]);
+  }, [
+    selectedBreeds,
+    ageMin,
+    ageMax,
+    sortField,
+    sortOrder,
+    zipCodes,
+    onFilterChange,
+  ]);
 
   const handleBreedToggle = (breed: string) => {
-    setSelectedBreeds((prev) =>
+    setSelectedBreeds((prev: string[]) =>
       prev.includes(breed) ? prev.filter((b) => b !== breed) : [...prev, breed],
     );
   };
@@ -53,6 +65,16 @@ const SearchFilters = ({
   const handleSortChange = (field: SortField, order: SortOrder) => {
     setSortField(field);
     setSortOrder(order);
+  };
+
+  const handleAddZipCode = (zipCode: string) => {
+    if (!zipCodes.includes(zipCode)) {
+      setZipCodes([...zipCodes, zipCode]);
+    }
+  };
+
+  const handleRemoveZipCode = (zipCode: string) => {
+    setZipCodes(zipCodes.filter((code) => code !== zipCode));
   };
 
   return (
@@ -86,6 +108,14 @@ const SearchFilters = ({
           ageMax={ageMax}
           onAgeMinChange={setAgeMin}
           onAgeMaxChange={setAgeMax}
+          loading={loading}
+        />
+
+        {/* ZIP Code Filter */}
+        <ZipCodeFilter
+          zipCodes={zipCodes}
+          onZipCodeChange={handleAddZipCode}
+          onRemoveZipCode={handleRemoveZipCode}
           loading={loading}
         />
 

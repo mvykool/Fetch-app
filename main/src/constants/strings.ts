@@ -32,6 +32,8 @@ export const strings = {
     apply: "Apply",
     minAge: "Min Age (years)",
     maxAge: "Max Age (years)",
+    zipcode: "Filter by Zip Code",
+    filter: "filter",
   },
   match: {
     foundMatch: "Your perfect match!",
