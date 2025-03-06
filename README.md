@@ -11,11 +11,8 @@
 
   <h3 align="center">Oh my dog!</h3>
 
-  <p align="center">
-    Documentation to understand project
-  </p>
+ #### Project's documentation
 </div>
-
 
 
 <!-- TABLE OF CONTENTS -->
@@ -50,25 +47,23 @@
 
 <img align="center" src="main/public/search.png" alt="setup" width="820" height="400"/>
 
-A React application that helps users find and match with dogs for adoption using the Fetch API. The application provides a seamless experience for searching, filtering, and favoriting dogs to find the perfect match.
+A React application that helps users find and match with dogs for adoption. The application allows the user to search, filter, and mark dogs as favorites to find the perfect match.
+Link to deployed website: https://fetch-app-eta.vercel.app/
 
 ## Features
 
-- **User Authentication**: Secure login system using email and name
+- **User Authentication**: Login system using email and name
 - **Dog Search**: 
   - Browse available dogs with pagination support
   - Filter dogs by breed
   - Sort results alphabetically by breed (ascending/descending)
-  - View comprehensive dog information including image, name, age, location, and breed
+  - Includes dog's information, image, name, age, location, and breed
+  - Search by zip code
 - **Favorites System**: 
   - Add/remove dogs to favorites list
   - Generate matches based on favorited dogs
-- **Location Integration**:
-  - Search dogs by location using ZIP codes
-  - View detailed location information
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 ### Built With
@@ -76,7 +71,6 @@ A React application that helps users find and match with dogs for adoption using
 [![stack](https://skillicons.dev/icons?i=react,typescript,vite,vitest,tailwind,vercel,githubactions)](https://skillicons.dev)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 
 <!-- GETTING STARTED -->
@@ -138,7 +132,7 @@ src/
 
 ## API Integration
 
-The application integrates with the Fetch API (https://frontend-take-home-service.fetch.com) and includes the following main endpoints:
+The application integrates with the API (https://frontend-take-home-service.fetch.com) and includes the following main endpoints:
 
 - Authentication: `/auth/login`, `/auth/logout`
 - Dogs: `/dogs/search`, `/dogs/breeds`, `/dogs/match`
@@ -159,17 +153,12 @@ The application integrates with the Fetch API (https://frontend-take-home-servic
 - Users can add dogs to their favorites list
 - Favorites are maintained across sessions
 - Match generation using favorited dogs
-
-### Location Integration
-- ZIP code based location search
-- Detailed location information display
-- Geographic boundary box search support
   
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Testing
 
-The project includes comprehensive testing using Vitest and React Testing Library. Run tests using:
+The project includes testing using Vitest and React Testing Library. Run tests using:
 
 ```bash
 npm run test
