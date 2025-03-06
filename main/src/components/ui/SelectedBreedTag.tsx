@@ -1,3 +1,5 @@
+import { strings } from "../../constants/strings";
+
 interface SelectedBreedTagsProps {
   selectedBreeds: string[];
   onBreedToggle: (breed: string) => void;
@@ -14,7 +16,7 @@ const SelectedBreedTags = ({
   return (
     <div className="mt-3">
       <div className="text-sm font-medium text-gray-700 mb-1">
-        Selected Breeds:
+        {strings.search.selectedBreeds}
       </div>
       <div className="flex flex-wrap gap-2">
         {selectedBreeds.map((breed) => (

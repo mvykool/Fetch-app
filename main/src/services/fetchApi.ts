@@ -9,7 +9,6 @@ import {
 } from "../types";
 
 const API_BASE_URL = "https://frontend-take-home-service.fetch.com";
-
 const defaultHeaders = {
   "Content-Type": "application/json",
 };
@@ -53,7 +52,6 @@ export const auth = {
       body: JSON.stringify({ name, email }),
     });
   },
-
   logout: async (): Promise<void> => {
     await fetchWithAuth("/auth/logout", {
       method: "POST",
@@ -69,37 +67,26 @@ export const dogs = {
   search: async (params: SearchParams): Promise<SearchResults> => {
     const queryParams = new URLSearchParams();
 
-    if (params.breeds && params.breeds.length > 0) {
-      params.breeds.forEach((breed) => {
-        queryParams.append("breeds", breed);
-      });
-    }
+    const appendArrayParams = (paramName: string, values?: string[]) => {
+      if (values && values.length > 0) {
+        values.forEach((value: string) => queryParams.append(paramName, value));
+      }
+    };
 
-    if (params.zipCodes && params.zipCodes.length > 0) {
-      params.zipCodes.forEach((zipCode) => {
-        queryParams.append("zipCodes", zipCode);
-      });
-    }
+    appendArrayParams("breeds", params.breeds);
+    appendArrayParams("zipCodes", params.zipCodes);
 
-    if (params.ageMin !== undefined) {
-      queryParams.append("ageMin", params.ageMin.toString());
-    }
+    const appendIfDefined = (paramName: string, value?: string | number) => {
+      if (value !== undefined) {
+        queryParams.append(paramName, value.toString());
+      }
+    };
 
-    if (params.ageMax !== undefined) {
-      queryParams.append("ageMax", params.ageMax.toString());
-    }
-
-    if (params.size !== undefined) {
-      queryParams.append("size", params.size.toString());
-    }
-
-    if (params.from !== undefined) {
-      queryParams.append("from", params.from.toString());
-    }
-
-    if (params.sort !== undefined) {
-      queryParams.append("sort", params.sort);
-    }
+    appendIfDefined("ageMin", params.ageMin);
+    appendIfDefined("ageMax", params.ageMax);
+    appendIfDefined("size", params.size);
+    appendIfDefined("from", params.from);
+    appendIfDefined("sort", params.sort);
 
     return fetchWithAuth<SearchResults>(
       `/dogs/search?${queryParams.toString()}`,

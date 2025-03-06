@@ -10,7 +10,6 @@ describe("LoginForm", () => {
 
     render(<LoginForm onSubmit={mockOnSubmit} error={null} />);
 
-    // Check if form elements are rendered
     expect(screen.getByLabelText(/name/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/email/i)).toBeInTheDocument();
     expect(screen.getByRole("button", { name: /login/i })).toBeInTheDocument();
@@ -50,10 +49,8 @@ describe("LoginForm", () => {
 
     const submitButton = screen.getByRole("button", { name: /login/i });
 
-    // Try to submit the form without entering any values
     await user.click(submitButton);
 
-    // The form should have HTML validation that prevents submission
     expect(mockOnSubmit).not.toHaveBeenCalled();
   });
 });

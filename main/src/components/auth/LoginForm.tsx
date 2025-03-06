@@ -41,7 +41,7 @@ const LoginForm = ({ onSubmit, error }: LoginFormProps) => {
             htmlFor="name"
             className="block text-sm font-medium text-gray-700 mb-1"
           >
-            Name
+            {strings.login.labelName}
           </label>
           <input
             id="name"
@@ -59,7 +59,7 @@ const LoginForm = ({ onSubmit, error }: LoginFormProps) => {
             htmlFor="email"
             className="block text-sm font-medium text-gray-700 mb-1"
           >
-            Email
+            {strings.login.labelEmail}
           </label>
           <input
             id="email"

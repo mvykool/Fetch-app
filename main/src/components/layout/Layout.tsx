@@ -1,6 +1,7 @@
 import React from "react";
 import { useAuth } from "../../hooks/useAuth";
 import Header from "./Header.tsx";
+import { strings } from "../../constants/strings.ts";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -20,7 +21,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <footer className="bg-light border border-t-Coltext py-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-center text-gray-500 text-sm">
-            &copy; {new Date().getFullYear()} Oh my dog! - Find Your Puppy
+            &copy; {new Date().getFullYear()} {strings.footer.footerText}
           </p>
         </div>
       </footer>

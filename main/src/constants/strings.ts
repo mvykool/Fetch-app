@@ -1,6 +1,8 @@
 export const strings = {
   login: {
     subtitle: "Find your perfect furry companion",
+    labelName: "Name",
+    labelEmail: "Email",
     name: "Enter your name",
     email: "Enter your email",
     text: "Find your new best friend with our dog adoption platform!",
@@ -23,6 +25,8 @@ export const strings = {
     adjustFilter: "Try adjusting your search filters to find more dogs.",
     addFav: "Add some dogs to your favorites!",
     sort: "Sort By",
+    breed: "Breed",
+    selectedBreeds: "Selected:",
     clear: "Clear all",
     reset: "Reset",
     apply: "Apply",
@@ -36,5 +40,8 @@ export const strings = {
     continueBrowsing: "Continue Browsing",
     adoptPuppy: "Adopt puppy",
     congratulations: "Congratulations! You've been matched with ",
+  },
+  footer: {
+    footerText: "Oh my dog! - Find Your Puppy",
   },
 };

@@ -1,4 +1,5 @@
 import { useState, useEffect, ChangeEvent } from "react";
+import { strings } from "../../constants/strings";
 
 interface BreedDropdownProps {
   breeds: string[];
@@ -41,7 +42,7 @@ const BreedDropdown = ({
   return (
     <div className="relative breed-dropdown">
       <label className="block text-sm font-medium text-gray-700 mb-1">
-        Breed
+        {strings.search.breed}
       </label>
       <div className="relative">
         <button
@@ -72,7 +73,7 @@ const BreedDropdown = ({
                   className="text-sm text-primaryHover hover:text-Coltext cursor-pointer"
                   type="button"
                 >
-                  Clear all
+                  {strings.search.clear}
                 </button>
               </div>
               <input
